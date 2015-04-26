@@ -45,4 +45,9 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(MainActivity.this, SensorsTestActivity.class);
         MainActivity.this.startActivity(intent);
     }
+
+    public void sensorsTestServerButtonClick(View view) {
+        Intent intent = new Intent(MainActivity.this, ServerTestActivity.class);
+        MainActivity.this.startActivity(intent);
+    }
 }

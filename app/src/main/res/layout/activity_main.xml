@@ -28,6 +28,15 @@
             android:layout_gravity="center"
             android:onClick="sensorsTestButtonClick"
             android:text="Sensors Test Activity" />
+
+        <Button
+            android:layout_width="273dp"
+            android:layout_height="wrap_content"
+            android:text="Server Test Activity"
+            android:id="@+id/button3"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:onClick="sensorsTestServerButtonClick" />
     </FrameLayout>
 
 </RelativeLayout>
