@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 import de.tavendo.autobahn.WebSocketConnection;
 import de.tavendo.autobahn.WebSocketException;
-import pl.skm.smarttag.R;
-import pl.skm.smarttag.pl.skm.smarttag.websocket.WebsocketHandler;
+import pl.skm.smarttag.websocket.WebsocketHandler;
 
 public class ServerTestActivity extends ActionBarActivity {
 

@@ -1,4 +1,4 @@
-package pl.skm.smarttag.pl.skm.smarttag.websocket;
+package pl.skm.smarttag.websocket;
 
 import android.widget.TextView;
 
