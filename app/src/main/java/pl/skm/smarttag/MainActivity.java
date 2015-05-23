@@ -50,4 +50,9 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(MainActivity.this, ServerTestActivity.class);
         MainActivity.this.startActivity(intent);
     }
+
+    public void mahonySensorTestButtonClick(View view) {
+        Intent intent = new Intent(MainActivity.this, MahonyTestActivity.class);
+        MainActivity.this.startActivity(intent);
+    }
 }

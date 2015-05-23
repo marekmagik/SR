@@ -32,10 +32,19 @@
         <Button
             android:layout_width="273dp"
             android:layout_height="wrap_content"
+            android:text="Mahony Test Activity"
+            android:id="@+id/mahonyButton"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:onClick="mahonySensorTestButtonClick" />
+
+        <Button
+            android:layout_width="273dp"
+            android:layout_height="wrap_content"
             android:text="Server Test Activity"
             android:id="@+id/button3"
             android:layout_gravity="center"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="120dp"
             android:onClick="sensorsTestServerButtonClick" />
     </FrameLayout>
 
