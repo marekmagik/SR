@@ -40,7 +40,6 @@ public class GPSTrackerService extends Service {
     private LocationManager locationManager;
     private Location lastGPSLocation = null;
     private long lastUpdateTimestamp = 0;
-    //private boolean isGPSOn = false;
     private Toast info;
 
     private Timer updatingTimer;
@@ -57,18 +56,12 @@ public class GPSTrackerService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        // Implementacja nie jest konieczna.
         return null;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-/*
-        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-            isGPSOn = true;
-        else
-            isGPSOn = false;
-*/
+
         lastGPSLocation = locationManager
                 .getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
@@ -158,11 +151,6 @@ public class GPSTrackerService extends Service {
 
                 round = 0;
             }
-/*
-            gameEngine.updateGpsCoordinates(location);
-            showToast("Longitude: " + PositionInCoordinateSystem
-                    .getXCoordinate(location) + ", latitude: " + PositionInCoordinateSystem.getYCoordinate(location) + ", altitude: " + location.getAltitude());
-*/
         }
 
         public void onStatusChanged(String provider, int status, Bundle extras) {

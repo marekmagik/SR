@@ -213,19 +213,11 @@ public class MahonyTestActivity extends Activity implements SensorEventListener 
     }
 
     private void initKalmanFilter() {
-        // A = [ 1 ]
-//        RealMatrix A = new Array2DRowRealMatrix(new double[][] { {1d, dt, 0}, {0, 1d, dt}, {0, 0, 1d} });
         final RealMatrix A = MatrixUtils.createRealMatrix(new double[][]{
                 {1, 0, 0},
                 {0, 1, 0},
                 {0, 0, 1}
         });
-
-// no control input
-//        RealMatrix B = null;
-//        RealMatrix B = new Array2DRowRealMatrix(new double[][] { {1d, 0,0}, {0, 1d, 0}, {0, 0, 1d} });
-
-//        RealMatrix B = MatrixUtils.createRealMatrix(3,3);
 
         RealMatrix B = MatrixUtils.createRealMatrix(new double[][]{
                 {1, 0, 0},
@@ -233,26 +225,17 @@ public class MahonyTestActivity extends Activity implements SensorEventListener 
                 {0, 0, 1}
         });
 
-// H = [ 1 ]
-//        RealMatrix H = new Array2DRowRealMatrix(new double[][] { {1d, 0,0}, {0, 1d, 0}, {0, 0, 1d} });
         RealMatrix H = MatrixUtils.createRealMatrix(new double[][]{
                 {1, 0, 0},
                 {0, 1, 0},
                 {0, 0, 1}
         });
 
-// Q = [ 0 ]
-//        RealMatrix Q = new Array2DRowRealMatrix(new double[][] { {0, 0,0, 0},  {0, 0, 0, 0}, {0, 0, 0, 0}, {0,0,0, 0} });
         RealMatrix Q = MatrixUtils.createRealMatrix(new double[][]{
                 {0, 0, 0},
                 {0, 0, 0},
                 {0, 0, 0}
         });
-
-
-// R = [ 0 ]
-//        RealMatrix R = new Array2DRowRealMatrix(new double[][] { {0.01d, 0,0,0},  {0, 0.01d, 0,0}, {0, 0, 0.01d,0},
-//                {0,0,0,0.1d}});
 
         RealMatrix R = MatrixUtils.createRealMatrix(new double[][]{
                 {1, 0, 0},

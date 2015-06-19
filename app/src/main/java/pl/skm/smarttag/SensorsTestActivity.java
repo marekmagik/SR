@@ -63,19 +63,11 @@ public class SensorsTestActivity extends Activity implements SensorEventListener
     private KalmanFilter kalmanFilter;
 
     private void initKalmanFilter() {
-        // A = [ 1 ]
-//        RealMatrix A = new Array2DRowRealMatrix(new double[][] { {1d, dt, 0}, {0, 1d, dt}, {0, 0, 1d} });
         final RealMatrix A = MatrixUtils.createRealMatrix(new double[][]{
                 {1, 0, 0},
                 {0, 1, 0},
                 {0, 0, 1}
         });
-
-// no control input
-//        RealMatrix B = null;
-//        RealMatrix B = new Array2DRowRealMatrix(new double[][] { {1d, 0,0}, {0, 1d, 0}, {0, 0, 1d} });
-
-//        RealMatrix B = MatrixUtils.createRealMatrix(3,3);
 
         RealMatrix B = MatrixUtils.createRealMatrix(new double[][]{
                 {1, 0, 0},
@@ -83,26 +75,17 @@ public class SensorsTestActivity extends Activity implements SensorEventListener
                 {0, 0, 1}
         });
 
-// H = [ 1 ]
-//        RealMatrix H = new Array2DRowRealMatrix(new double[][] { {1d, 0,0}, {0, 1d, 0}, {0, 0, 1d} });
         RealMatrix H = MatrixUtils.createRealMatrix(new double[][]{
                 {1, 0, 0},
                 {0, 1, 0},
                 {0, 0, 1}
         });
 
-// Q = [ 0 ]
-//        RealMatrix Q = new Array2DRowRealMatrix(new double[][] { {0, 0,0, 0},  {0, 0, 0, 0}, {0, 0, 0, 0}, {0,0,0, 0} });
         RealMatrix Q = MatrixUtils.createRealMatrix(new double[][]{
                 {0, 0, 0},
                 {0, 0, 0},
                 {0, 0, 0}
         });
-
-
-// R = [ 0 ]
-//        RealMatrix R = new Array2DRowRealMatrix(new double[][] { {0.01d, 0,0,0},  {0, 0.01d, 0,0}, {0, 0, 0.01d,0},
-//                {0,0,0,0.1d}});
 
         RealMatrix R = MatrixUtils.createRealMatrix(new double[][]{
                 {1, 0, 0},
@@ -150,76 +133,11 @@ public class SensorsTestActivity extends Activity implements SensorEventListener
         sensorManager.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_FASTEST);
         sensorManager.registerListener(this, magneticFieldSensor,
                 SensorManager.SENSOR_DELAY_FASTEST);
-/*
-        timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if (orientation == null || orientation.length != 3) {
-                    return;
-                }
-
-                kalmanFilter.predict();
-
-                kalmanFilter.correct(convertToArrayOfDouble(orientation));
-
-                final double[] newOrientation = kalmanFilter.getStateEstimation();
-
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-
-//                        kalmanFilter.predict();
-//                        kalmanFilter.predict(convertToArrayOfDouble(orientation));
-
-//                        kalmanFilter.correct(convertToArrayOfDouble(orientation));
-
-//                        kalmanFilter.predict(convertToArrayOfDouble(orientation));
-
-//                        double[] newOrientation = kalmanFilter.getStateEstimation();
-
-                        textviewAzimuth.setText("Azimuth: " +
-                                String.valueOf(/*Math.acos(rotationMatrix[8])*/
-/*                                        newOrientation[0] * DEG));
-                        textviewPitch.setText("Pitch: " + String.valueOf
-                                (newOrientation[2] *
-                                        DEG));
-                        textviewRoll.setText("Roll: " + String.valueOf(
-                                newOrientation[4] * DEG));
-                    }
-                });// .obtainMessage(1).sendToTarget();
-                /*
-                kalmanFilter.predict();
-
-                kalmanFilter.correct(convertToArrayOfDouble(orientation));
-
-                double[] newOrientation = kalmanFilter.getStateEstimation();
-
-                textviewAzimuth.setText("Azimuth: " +
-                        String.valueOf(/*Math.acos(rotationMatrix[8])
-                                newOrientation[0] * DEG));
-                textviewPitch.setText("Pitch: " + String.valueOf
-                        (newOrientation[1] *
-                                DEG));
-                textviewRoll.setText("Roll: " + String.valueOf(
-                        newOrientation[2] * DEG));
-
-                kalmanFilter.predict();
-
-                */
-/*            }
-        }, 1L, 1L);
-*/
     }
 
     @Override
     protected void onPause() {
-//        timer.cancel();
-
         Sensor gravitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
-/*
-        Sensor accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-*/
         Sensor magneticFieldSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         sensorManager.unregisterListener(this, gravitySensor);
 //        sensorManager.unregisterListener(this, accelerometerSensor);
@@ -238,12 +156,8 @@ public class SensorsTestActivity extends Activity implements SensorEventListener
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -253,25 +167,14 @@ public class SensorsTestActivity extends Activity implements SensorEventListener
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        float[] data;
         switch (event.sensor.getType()) {
             case Sensor.TYPE_GRAVITY:
-                //case Sensor.TYPE_ACCELEROMETER:
                 gravityVector[0] = event.values[0];
                 gravityVector[1] = event.values[1];
                 gravityVector[2] = event.values[2];
                 haveGrav = true;
                 break;
-/*
-            case Sensor.TYPE_ACCELEROMETER:
-                //case Sensor.TYPE_GRAVITY:
-                if (haveGrav) break;    // don't need it, we have better
-                gravityVector[0] = event.values[0];
-                gravityVector[1] = event.values[1];
-                gravityVector[2] = event.values[2];
-                haveAccel = true;
-                break;
-*/
+
             case Sensor.TYPE_MAGNETIC_FIELD:
                 magneticVector[0] = event.values[0];
                 magneticVector[1] = event.values[1];
@@ -289,19 +192,7 @@ public class SensorsTestActivity extends Activity implements SensorEventListener
             // Orientation isn't as useful as a rotation matrix, but
             // we'll show it here anyway.
             SensorManager.getOrientation(R2, orientation);
-//            float incl = SensorManager.getInclination(inclinationMatrix);
-            //     Log.d(TAG, "mh: " + (orientation[0]*DEG));
-
-            //    Log.d(TAG, "mh: " + (computeCoreSkyAxisToZeroAtNorth(orientation[0] * DEG)));
-
-//            Log.d(TAG, "pitch: " + (orientation[1]*DEG));
-//            Log.d(TAG, "roll: " + (orientation[2]*DEG));
             Log.d(TAG, "yaw: " + (orientation[0] * DEG));
-//            Log.d(TAG, "inclination: " + (incl*DEG));
-
-
-//            if(counter == 0) {
-
 
             kalmanFilter.predict();
 
@@ -322,39 +213,9 @@ public class SensorsTestActivity extends Activity implements SensorEventListener
                         DEG));
                 textviewRoll.setText("Roll: " + String.valueOf(
                         newOrientation[2] * DEG));
-            /*    textAltitude.setText("Inclination: " + event.accuracy (incl*DEG));
-*/
-
-
-
-
-
-//            kalmanFilter.predict();
-
-/*
-                averageOrientation[0] = 0;
-                averageOrientation[1] = 0;
-                averageOrientation[2] = 0;
-
-
-            }else{
-                averageOrientation[0] += orientation[0];
-                averageOrientation[1] += orientation[1];
-                averageOrientation[2] += orientation[2];
-
-                counter--;
-            }
-*/
             haveGrav = false;
             haveMag = false;
         }
-    }
-
-    private double computeCoreSkyAxisToZeroAtNorth(double arg) {
-        //    if(){
-
-        //    }
-        return arg - RIGHT_ANGLE;
     }
 
     @Override

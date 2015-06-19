@@ -1,4 +1,4 @@
-package pl.skm.smarttag.server;
+package pl.skm.smarttag;
 
 import android.app.Activity;
 import android.content.Context;
@@ -46,7 +46,6 @@ public class SensorsXimuTestActivity extends Activity implements SensorEventList
         textviewPitch = (TextView) findViewById(R.id.textpitch);
         textviewRoll = (TextView) findViewById(R.id.textroll);
         textAltitude = (TextView) findViewById(R.id.textAltitude);
-        //inicjalizacja zminnej ki
     }
 
 
