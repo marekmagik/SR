@@ -26,7 +26,6 @@ public class GPSTrackerService extends Service {
 
     private final static GameEngineALO gameEngine = new GameEngineALO();
     private final static long ONE_SECOND_FACTOR = 1000;
-    //    private final static long SERVER_MINIMUM_UPDATE_DELAY = 1 * ONE_SECOND_FACTOR;
     private final static long MINIMUM_INTERVAL_BETWEEN_HANDLER_LAUNCH = 100;
     private final static float MINIMUM_DISTANCE_BETWEEN_HANDLER_LAUNCH = 0; // 0.05f;
     private final static long MAXIMUM_PERIOD_WITHOUT_GPS = 1 * ONE_SECOND_FACTOR;
@@ -40,7 +39,6 @@ public class GPSTrackerService extends Service {
     private LocationManager locationManager;
     private Location lastGPSLocation = null;
     private long lastUpdateTimestamp = 0;
-    //private boolean isGPSOn = false;
     private Toast info;
 
     private Timer updatingTimer;
